@@ -21,41 +21,17 @@ struct LoginView: View {
             VStack(spacing: 35) {
                 customText(text: "Welcome", color: Datasource.Menu.textColor)
                     .font(.system(size: 40, weight: .heavy))
-                
-                
                 customText(text: "Access your account securely and easily.", color: Datasource.Menu.textColor)
                     .font(.system(size: 18))
                 
                 VStack(spacing: 50) {
-                    ZStack(alignment: .leading){
-                        if self.email.isEmpty{
-                            Text("Email")
-                                .foregroundColor(.gray)
-                        }
-                        TextField("", text: self.$email)
-                    }
-                    .padding(.horizontal)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.init(uiColor: Datasource.Menu.buttonColor))
-                        .frame(height: 40))
-                    
-                    ZStack(alignment: .leading){
-                        if self.password.isEmpty{
-                            Text("Password")
-                                .foregroundColor(.gray)
-                        }
-                        SecureField("", text: self.$password)
-                    }
-                    .padding(.horizontal)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.init(uiColor: Datasource.Menu.buttonColor))
-                        .frame(height: 40))
+                    CustomInputField(placeholder: "Email", inputType: .email, text: self.$email)
+                    CustomInputField(placeholder: "Password", inputType: .password, text: self.$password)
                 }
                 .padding(.horizontal, 40.0)
             }
             
             Spacer()
-            
             
             Image("LoginBookPicture")
                 .resizable()
@@ -84,7 +60,8 @@ struct LoginView: View {
     }
     
     private func login(){
-        print("email: \(self.email)\n password: \(self.password)")
+        self.email = ""
+        self.password = ""
     }
 }
 
