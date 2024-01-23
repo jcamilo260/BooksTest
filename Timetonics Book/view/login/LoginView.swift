@@ -15,6 +15,7 @@ extension Binding: Equatable where Value: Equatable {
 
 
 struct LoginView: View {
+    
     @State private var email = ""
     @State private var password = ""
     @State private var didTapEmailTextField = false

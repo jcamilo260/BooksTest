@@ -10,6 +10,7 @@ import Foundation
 enum AuthenticationError: Error{
     case unableToPerformRequest
     case unexpectedStatusCode
+    case unexpectedNilData
 }
 
 protocol AuthenticationServiceProtocol{
@@ -20,9 +21,9 @@ protocol AuthenticationServiceProtocol{
     func setQueryParameters(queryParameters: Datasource.ServicesData.queryParameter) -> URL?
 }
 
-class AuthenticationService: AuthenticationServiceProtocol
-    
-    typealias Appkey = AppKeyResponse
+class AuthenticationService: AuthenticationServiceProtocol{
+
+    typealias Appkey = AppkeyModel
     private var url: URL = URL(string: Datasource.ServicesData.baseUrl)!
     
     func getUrlRequest(url: URL) -> URLRequest {
@@ -31,20 +32,27 @@ class AuthenticationService: AuthenticationServiceProtocol
         return urlRequest
     }
     
-    func requestCreateAppKey(onSuccess: @escaping (AppKeyResponse) -> Void, onFailure: @escaping (AuthenticationError) -> Void)->Void {
+    func setQueryParameters(queryParameters: Datasource.ServicesData.queryParameter) -> URL? {
+        var urlComponents: URLComponents = URLComponents(string: Datasource.ServicesData.baseUrl)!
+        urlComponents.queryItems = queryParameters.map({
+            URLQueryItem(name: $0.key, value: String(describing: $0.value))
+        })
+        guard let finalUrl = urlComponents.url else {
+            return nil
+        }
+        return finalUrl
+    }
+    
+    func requestCreateAppKey(onSuccess: @escaping (AppkeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void)->Void {
         let queryParameters: Datasource.ServicesData.queryParameter = Datasource.ServicesData.AppKeyQuery.queryParameters
         
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.queryItems = queryParameters.map { key, value in
-            URLQueryItem(name: key, value: String(describing: value))
-        }
-        guard let finalUrl = components.url else {
-            print("Query parameters has failed")
-            return
-        }
-        var urlRequest = getUrlRequest(url: finalUrl)
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, urlResponse, error in
-            if let error = error{
+        let finalUrl: URL = setQueryParameters(queryParameters: queryParameters)!
+        let urlRequest = getUrlRequest(url: finalUrl)
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
+            
+            guard let self = self else {return}
+            
+            if error != nil{
                 onFailure(.unableToPerformRequest)
                 return
             }
@@ -54,6 +62,19 @@ class AuthenticationService: AuthenticationServiceProtocol
                 return
             }
             
+            guard let data = data else {
+                onFailure(.unexpectedNilData)
+                return
+            }
+            
+            if let appkeyResponse = JsonConverter.decodeData(data: data, type: AppKeyResponse.self){
+                let appkeyModel: AppkeyModel = AppkeyModel(id: appkeyResponse.id, status: appkeyResponse.status, appkey: appkeyResponse.appkey, request: appkeyResponse.request)
+                print(appkeyModel)
+            }
+            
+            
+            
+        }
+        task.resume()
     }
-    
 }
