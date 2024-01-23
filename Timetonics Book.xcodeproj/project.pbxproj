@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31C2B5F61D10092948D /* AuthenticationService.swift */; };
+		B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31F2B5F62990092948D /* AppKeyResponse.swift */; };
 		B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */; };
 		B3DDBD992B5E3D4D00782608 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBD982B5E3D4D00782608 /* ContentView.swift */; };
 		B3DDBD9B2B5E3D4F00782608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DDBD9A2B5E3D4F00782608 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B329C31C2B5F61D10092948D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		B329C31F2B5F62990092948D /* AppKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyResponse.swift; sourceTree = "<group>"; };
 		B3DDBD932B5E3D4D00782608 /* Timetonics Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetonics Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetonics_BookApp.swift; sourceTree = "<group>"; };
 		B3DDBD982B5E3D4D00782608 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B329C31E2B5F62630092948D /* AuthenticationResponse */ = {
+			isa = PBXGroup;
+			children = (
+				B329C31F2B5F62990092948D /* AppKeyResponse.swift */,
+			);
+			path = AuthenticationResponse;
+			sourceTree = "<group>";
+		};
 		B3DDBD8A2B5E3D4D00782608 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 		B3DDBDA52B5E3FD000782608 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B329C31E2B5F62630092948D /* AuthenticationResponse */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -117,6 +130,7 @@
 		B3DDBDAF2B5E51CE00782608 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				B329C31C2B5F61D10092948D /* AuthenticationService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -195,6 +209,8 @@
 				B3DDBD992B5E3D4D00782608 /* ContentView.swift in Sources */,
 				B3DDBDAB2B5E444100782608 /* Datasource.swift in Sources */,
 				B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */,
+				B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */,
+				B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

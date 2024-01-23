@@ -37,12 +37,17 @@ struct Datasource{
     }
     
     struct ServicesData{
+        
+        public typealias queryParameter = [String:Any]
         public static let baseUrl: String = "https://timetonic.com/live/api.php"
         
+        
         struct AppKeyQuery{
-            public static let version: String = "version"
-            public static let request: String = "req"
-            public static let appName: String = "appname"
+            public static let queryParameters: queryParameter = [
+                "version": "1.47",
+                "req" : "createAppkey",
+                "appname":"BooksApp"
+            ]
         }
         
         struct OAuthQuery{
