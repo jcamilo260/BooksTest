@@ -7,64 +7,106 @@
 
 import SwiftUI
 
+extension Binding: Equatable where Value: Equatable {
+    public static func ==(lhs: Binding<Value>, rhs: Binding<Value>) -> Bool {
+        lhs.wrappedValue == rhs.wrappedValue
+    }
+}
+
+
 struct LoginView: View {
-    
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var didLogin: Bool = false
-    
+    @State private var email = ""
+    @State private var password = ""
+    @State private var didTapEmailTextField = false
+    @State private var didTapPasswordTextField = false
+    @State private var didLogin = false
+
     var body: some View {
-        VStack{
-            
+        VStack {
             Spacer(minLength: 100)
             
             VStack(spacing: 35) {
-                customText(text: "Welcome", color: Datasource.Menu.textColor)
-                    .font(.system(size: 40, weight: .heavy))
-                customText(text: "Access your account securely and easily.", color: Datasource.Menu.textColor)
-                    .font(.system(size: 18))
-                
-                VStack(spacing: 50) {
-                    CustomInputField(placeholder: "Email", inputType: .email, text: self.$email)
-                    CustomInputField(placeholder: "Password", inputType: .password, text: self.$password)
-                }
-                .padding(.horizontal, 40.0)
+                header
+                inputSection
+                Spacer()
+                footerLogin
             }
-            
-            Spacer()
-            
+        }
+    }
+    
+    var header: some View {
+        VStack(spacing: 35) {
+            customText("Welcome", color: Datasource.Menu.textColor)
+                .font(.system(size: 40, weight: .heavy))
+            customText("Access your account securely and easily.", color: Datasource.Menu.textColor)
+                .font(.system(size: 18))
+        }
+    }
+    
+    var inputSection: some View {
+        VStack(spacing: 50) {
+            customInputTextField("Email", text: $email, isFirstResponder: $didTapEmailTextField)
+                .padding(.horizontal)
+            customInputTextField("Password", text: $password, isFirstResponder: $didTapPasswordTextField)
+                .padding(.horizontal)
+        }
+        .frame(maxWidth: 350)
+    }
+
+    var footerLogin: some View {
+        VStack {
             Image("LoginBookPicture")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 250)
             
-            Spacer()
-            
-            Button(action: {self.login()}, label: {
+            Button(action: { self.login() }) {
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(Color.init(uiColor: Datasource.Menu.buttonColor))
+                    .fill(Color(uiColor: Datasource.Menu.buttonColor))
                     .frame(width: 300, height: 80)
                     .overlay {
-                        customText(text: "Login", color: Datasource.Menu.textColor)
+                        customText("Login", color: Datasource.Menu.textColor)
                             .font(.system(size: 30, weight: .medium))
-                            
                     }
-            })
+            }
         }
     }
-    
+
     @ViewBuilder
-    func customText(text: String, color: UIColor) -> some View{
+    func customText(_ text: String, color: UIColor) -> some View {
         Text(text)
             .foregroundColor(Color(uiColor: color))
     }
-    
-    private func login(){
-        self.email = ""
-        self.password = ""
+
+    @ViewBuilder
+    func customInputTextField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>) -> some View {
+        ZStack(alignment: .leading) {
+            if text.wrappedValue.isEmpty {
+                Text(placeholder)
+                    .foregroundColor(.gray)
+            }
+            TextField("", text: text, onEditingChanged: { editing in
+                isFirstResponder.wrappedValue = editing
+            })
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 20)
+            .fill(Color(uiColor: Datasource.Menu.buttonColor))
+            .frame(height: 40))
+        .phaseAnimator(Datasource.AnimationData.AnimationPhases.allCases, trigger: isFirstResponder) { view, phase in
+            view.scaleEffect(phase.scaleForInputField)
+                .onTapGesture {
+                    isFirstResponder.wrappedValue.toggle()
+                }
+        }
+    }
+
+    private func login() {
+        email = ""
+        password = ""
     }
 }
-
-#Preview {
-    LoginView()
-}
+    
+    #Preview {
+        LoginView()
+    }
