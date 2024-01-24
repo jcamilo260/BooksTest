@@ -7,13 +7,6 @@
 
 import Foundation
 
-enum AuthenticationError: Error{
-    case unableToPerformRequest
-    case unexpectedStatusCode
-    case unexpectedNilData
-    case unableToConvertData
-}
-
 protocol AuthenticationServiceProtocol{
     associatedtype Appkey
     associatedtype OAuthKey
@@ -49,7 +42,7 @@ class AuthenticationService: AuthenticationServiceProtocol{
         }
         return finalUrl
     }
-    
+        
     func requestCreateSessionKey(onSuccess: @escaping (SessionKeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void) {
         var queryParameters: ServicesDatasource.queryParameter = ServicesDatasource.SessionKeyQuery.queryParameters
         guard let o_u = TokenHandler.getToken(serviceName: ServicesDatasource.OAuthQuery.serviceTokenNameSecondary),
@@ -106,7 +99,6 @@ class AuthenticationService: AuthenticationServiceProtocol{
         queryParameters[ServicesDatasource.Querykeys.appKey] = appkey
         queryParameters[ServicesDatasource.Querykeys.login] = username
         queryParameters[ServicesDatasource.Querykeys.password] = password
-
         
         let finalUrl: URL = getUrlWithQueryParameters(queryParameters: queryParameters)!
         let urlRequest = getUrlRequest(url: finalUrl)
@@ -130,9 +122,13 @@ class AuthenticationService: AuthenticationServiceProtocol{
                 return
             }
             
+            
             if let oAuthKeyResponse = JsonConverter.decodeData(data: data, type: OAuthKeyResponse.self){
                 let oAuthModel: OAuthKey = OAuthModel(status: oAuthKeyResponse.status, oAuthKey: oAuthKeyResponse.oAuthKey, o_u: oAuthKeyResponse.o_u, request: oAuthKeyResponse.request)
                 onSuccess(oAuthModel)
+            }else{
+                onFailure(.unableToConvertData)
+                return
             }
         }
         task.resume()

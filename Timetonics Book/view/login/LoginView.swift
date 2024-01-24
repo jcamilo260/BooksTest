@@ -7,34 +7,26 @@
 
 import SwiftUI
 
-extension Binding: Equatable where Value: Equatable {
-    public static func ==(lhs: Binding<Value>, rhs: Binding<Value>) -> Bool {
-        lhs.wrappedValue == rhs.wrappedValue
-    }
-}
-
 
 struct LoginView: View {
     
-    @State private var email = ""
-    @State private var password = ""
-    @State private var didLogin = false
-
+    @StateObject var loginVM: LoginViewModel = LoginViewModel()
+    
     var body: some View {
         VStack {
-            Spacer(minLength: 100)
-            
             VStack(spacing: 35) {
                 header
                 inputSection
-                Spacer()
                 footerLogin
             }
-        }
+        }.fullScreenCover(isPresented: self.$loginVM.logedIn,  content: {
+            LandingView()
+        })
     }
     
     var header: some View {
         VStack(spacing: 35) {
+            
             customText("Welcome", color: MenuDatasource.textColor)
                 .font(.system(size: 40, weight: .heavy))
             customText("Access your account securely and easily.", color: MenuDatasource.textColor)
@@ -44,14 +36,22 @@ struct LoginView: View {
     
     var inputSection: some View {
         VStack(spacing: 10) {
-            customInputTextField(isEmail: true, text: self.$email)
-            customInputTextField(isEmail: false, text: self.$password)
+            customInputTextField(isEmail: true, text: self.$loginVM.email)
+            customInputTextField(isEmail: false, text: self.$loginVM.password)
         }
         .frame(maxWidth: 350)
     }
-
+    
     var footerLogin: some View {
         VStack {
+            if !self.loginVM.errorMessage.isEmpty{
+                customText(self.loginVM.errorMessage, color: .black)
+                    .font(.footnote)
+                    .fontWeight(.bold)
+            }
+            if self.loginVM.isLoading{
+                ProgressView("Wait please")
+            }
             Image("LoginBookPicture")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -68,26 +68,23 @@ struct LoginView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     func customText(_ text: String, color: UIColor) -> some View {
         Text(text)
             .foregroundColor(Color(uiColor: color))
     }
-
+    
     @ViewBuilder
     func customInputTextField(isEmail: Bool, text: Binding<String>) -> some View {
-        ZStack(alignment: .leading) {
-            if text.wrappedValue.isEmpty {
-                Text(isEmail ? "Email" : "Password")
-                    .foregroundColor(.gray)
-            }
+        VStack(alignment: .leading) {
+            
             if isEmail{
-                TextField("", text: text)
+                TextField("Email", text: text)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
             }else{
-                SecureField("", text: text)
+                SecureField("Password", text: text)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
             }
@@ -97,14 +94,12 @@ struct LoginView: View {
             .fill(Color(uiColor: MenuDatasource.buttonColor))
             .frame(height: 40))
     }
-
+    
     private func login() {
-        print("email: \(email)\n password: \(password)")
-        email = ""
-        password = ""
+        self.loginVM.login()
     }
 }
-    
-    #Preview {
-        LoginView()
-    }
+
+#Preview {
+    LoginView()
+}
