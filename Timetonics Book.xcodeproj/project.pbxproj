@@ -7,20 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3110A612B604D3300780729 /* TokenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A602B604D3300780729 /* TokenHandler.swift */; };
+		B3110A632B6065FE00780729 /* MenuDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A622B6065FE00780729 /* MenuDatasource.swift */; };
+		B3110A672B6066DF00780729 /* ServiceDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A662B6066DF00780729 /* ServiceDatasource.swift */; };
+		B3110A692B606C4100780729 /* SessionKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A682B606C4100780729 /* SessionKeyResponse.swift */; };
 		B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31C2B5F61D10092948D /* AuthenticationService.swift */; };
 		B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31F2B5F62990092948D /* AppKeyResponse.swift */; };
+		B3875C3F2B600CC600CD17C5 /* OAuthKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */; };
 		B3AE83D02B5F98320023E151 /* JsonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE83CF2B5F98320023E151 /* JsonConverter.swift */; };
 		B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */; };
 		B3DDBD992B5E3D4D00782608 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBD982B5E3D4D00782608 /* ContentView.swift */; };
 		B3DDBD9B2B5E3D4F00782608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DDBD9A2B5E3D4F00782608 /* Assets.xcassets */; };
 		B3DDBD9E2B5E3D4F00782608 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DDBD9D2B5E3D4F00782608 /* Preview Assets.xcassets */; };
 		B3DDBDA82B5E41AF00782608 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBDA72B5E41AF00782608 /* LoginView.swift */; };
-		B3DDBDAB2B5E444100782608 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBDAA2B5E444100782608 /* Datasource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3110A602B604D3300780729 /* TokenHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenHandler.swift; sourceTree = "<group>"; };
+		B3110A622B6065FE00780729 /* MenuDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDatasource.swift; sourceTree = "<group>"; };
+		B3110A662B6066DF00780729 /* ServiceDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDatasource.swift; sourceTree = "<group>"; };
+		B3110A682B606C4100780729 /* SessionKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeyResponse.swift; sourceTree = "<group>"; };
 		B329C31C2B5F61D10092948D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B329C31F2B5F62990092948D /* AppKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyResponse.swift; sourceTree = "<group>"; };
+		B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthKeyResponse.swift; sourceTree = "<group>"; };
 		B3AE83CF2B5F98320023E151 /* JsonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConverter.swift; sourceTree = "<group>"; };
 		B3DDBD932B5E3D4D00782608 /* Timetonics Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetonics Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetonics_BookApp.swift; sourceTree = "<group>"; };
@@ -28,7 +37,6 @@
 		B3DDBD9A2B5E3D4F00782608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3DDBD9D2B5E3D4F00782608 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3DDBDA72B5E41AF00782608 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		B3DDBDAA2B5E444100782608 /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				B329C31F2B5F62990092948D /* AppKeyResponse.swift */,
+				B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */,
+				B3110A682B606C4100780729 /* SessionKeyResponse.swift */,
 			);
 			path = AuthenticationResponse;
 			sourceTree = "<group>";
@@ -54,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				B3AE83CF2B5F98320023E151 /* JsonConverter.swift */,
+				B3110A602B604D3300780729 /* TokenHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -125,7 +136,8 @@
 		B3DDBDA92B5E442A00782608 /* Datasource */ = {
 			isa = PBXGroup;
 			children = (
-				B3DDBDAA2B5E444100782608 /* Datasource.swift */,
+				B3110A622B6065FE00780729 /* MenuDatasource.swift */,
+				B3110A662B6066DF00780729 /* ServiceDatasource.swift */,
 			);
 			path = Datasource;
 			sourceTree = "<group>";
@@ -218,10 +230,14 @@
 			files = (
 				B3AE83D02B5F98320023E151 /* JsonConverter.swift in Sources */,
 				B3DDBDA82B5E41AF00782608 /* LoginView.swift in Sources */,
+				B3875C3F2B600CC600CD17C5 /* OAuthKeyResponse.swift in Sources */,
 				B3DDBD992B5E3D4D00782608 /* ContentView.swift in Sources */,
-				B3DDBDAB2B5E444100782608 /* Datasource.swift in Sources */,
+				B3110A632B6065FE00780729 /* MenuDatasource.swift in Sources */,
+				B3110A672B6066DF00780729 /* ServiceDatasource.swift in Sources */,
+				B3110A692B606C4100780729 /* SessionKeyResponse.swift in Sources */,
 				B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */,
 				B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */,
+				B3110A612B604D3300780729 /* TokenHandler.swift in Sources */,
 				B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

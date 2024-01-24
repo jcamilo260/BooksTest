@@ -18,8 +18,6 @@ struct LoginView: View {
     
     @State private var email = ""
     @State private var password = ""
-    @State private var didTapEmailTextField = false
-    @State private var didTapPasswordTextField = false
     @State private var didLogin = false
 
     var body: some View {
@@ -37,19 +35,17 @@ struct LoginView: View {
     
     var header: some View {
         VStack(spacing: 35) {
-            customText("Welcome", color: Datasource.Menu.textColor)
+            customText("Welcome", color: MenuDatasource.textColor)
                 .font(.system(size: 40, weight: .heavy))
-            customText("Access your account securely and easily.", color: Datasource.Menu.textColor)
+            customText("Access your account securely and easily.", color: MenuDatasource.textColor)
                 .font(.system(size: 18))
         }
     }
     
     var inputSection: some View {
-        VStack(spacing: 50) {
-            customInputTextField("Email", text: $email, isFirstResponder: $didTapEmailTextField)
-                .padding(.horizontal)
-            customInputTextField("Password", text: $password, isFirstResponder: $didTapPasswordTextField)
-                .padding(.horizontal)
+        VStack(spacing: 10) {
+            customInputTextField(isEmail: true, text: self.$email)
+            customInputTextField(isEmail: false, text: self.$password)
         }
         .frame(maxWidth: 350)
     }
@@ -63,10 +59,10 @@ struct LoginView: View {
             
             Button(action: { self.login() }) {
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(Color(uiColor: Datasource.Menu.buttonColor))
+                    .fill(Color(uiColor: MenuDatasource.buttonColor))
                     .frame(width: 300, height: 80)
                     .overlay {
-                        customText("Login", color: Datasource.Menu.textColor)
+                        customText("Login", color: MenuDatasource.textColor)
                             .font(.system(size: 30, weight: .medium))
                     }
             }
@@ -80,29 +76,30 @@ struct LoginView: View {
     }
 
     @ViewBuilder
-    func customInputTextField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>) -> some View {
+    func customInputTextField(isEmail: Bool, text: Binding<String>) -> some View {
         ZStack(alignment: .leading) {
             if text.wrappedValue.isEmpty {
-                Text(placeholder)
+                Text(isEmail ? "Email" : "Password")
                     .foregroundColor(.gray)
             }
-            TextField("", text: text, onEditingChanged: { editing in
-                isFirstResponder.wrappedValue = editing
-            })
+            if isEmail{
+                TextField("", text: text)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+            }else{
+                SecureField("", text: text)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+            }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 20)
-            .fill(Color(uiColor: Datasource.Menu.buttonColor))
+            .fill(Color(uiColor: MenuDatasource.buttonColor))
             .frame(height: 40))
-        .phaseAnimator(Datasource.AnimationData.AnimationPhases.allCases, trigger: isFirstResponder) { view, phase in
-            view.scaleEffect(phase.scaleForInputField)
-                .onTapGesture {
-                    isFirstResponder.wrappedValue.toggle()
-                }
-        }
     }
 
     private func login() {
+        print("email: \(email)\n password: \(password)")
         email = ""
         password = ""
     }

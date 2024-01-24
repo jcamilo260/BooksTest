@@ -11,20 +11,27 @@ enum AuthenticationError: Error{
     case unableToPerformRequest
     case unexpectedStatusCode
     case unexpectedNilData
+    case unableToConvertData
 }
 
 protocol AuthenticationServiceProtocol{
     associatedtype Appkey
-    
+    associatedtype OAuthKey
+    associatedtype SessionKey
     func getUrlRequest(url: URL)->URLRequest
     func requestCreateAppKey(onSuccess: @escaping (Appkey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
-    func setQueryParameters(queryParameters: Datasource.ServicesData.queryParameter) -> URL?
+    func requestCreateSessionKey(onSuccess: @escaping (SessionKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
+    func requestCreateOAuthKey(username: String, password: String, onSuccess: @escaping (OAuthKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
+    func getUrlWithQueryParameters(queryParameters: ServicesDatasource.queryParameter) -> URL?
 }
 
 class AuthenticationService: AuthenticationServiceProtocol{
-
+    
+    typealias OAuthKey = OAuthModel
     typealias Appkey = AppkeyModel
-    private var url: URL = URL(string: Datasource.ServicesData.baseUrl)!
+    typealias SessionKey = SessionKeyModel
+    
+    private var url: URL = URL(string: ServicesDatasource.baseUrl)!
     
     func getUrlRequest(url: URL) -> URLRequest {
         var urlRequest: URLRequest = URLRequest(url: url)
@@ -32,8 +39,8 @@ class AuthenticationService: AuthenticationServiceProtocol{
         return urlRequest
     }
     
-    func setQueryParameters(queryParameters: Datasource.ServicesData.queryParameter) -> URL? {
-        var urlComponents: URLComponents = URLComponents(string: Datasource.ServicesData.baseUrl)!
+    func getUrlWithQueryParameters(queryParameters: ServicesDatasource.queryParameter) -> URL? {
+        var urlComponents: URLComponents = URLComponents(string: ServicesDatasource.baseUrl)!
         urlComponents.queryItems = queryParameters.map({
             URLQueryItem(name: $0.key, value: String(describing: $0.value))
         })
@@ -43,14 +50,102 @@ class AuthenticationService: AuthenticationServiceProtocol{
         return finalUrl
     }
     
-    func requestCreateAppKey(onSuccess: @escaping (AppkeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void)->Void {
-        let queryParameters: Datasource.ServicesData.queryParameter = Datasource.ServicesData.AppKeyQuery.queryParameters
+    func requestCreateSessionKey(onSuccess: @escaping (SessionKeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void) {
+        var queryParameters: ServicesDatasource.queryParameter = ServicesDatasource.SessionKeyQuery.queryParameters
+        guard let o_u = TokenHandler.getToken(serviceName: ServicesDatasource.OAuthQuery.serviceTokenNameSecondary),
+              let oAuthKey = TokenHandler.getToken(serviceName: ServicesDatasource.OAuthQuery.serviceTokenName) else {
+            return
+        }
+
+        queryParameters[ServicesDatasource.Querykeys.oauthkey] = oAuthKey
+        queryParameters[ServicesDatasource.Querykeys.o_u] = o_u
+        queryParameters[ServicesDatasource.Querykeys.u_c] = o_u
         
-        let finalUrl: URL = setQueryParameters(queryParameters: queryParameters)!
+        
+        let finalUrl: URL = getUrlWithQueryParameters(queryParameters: queryParameters)!
+        let urlRequest = getUrlRequest(url: finalUrl)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) {[weak self] data, response, error in
+            
+            guard self != nil else {return}
+            
+            if error != nil{
+                onFailure(.unableToPerformRequest)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+               response.statusCode != 200{
+                onFailure(.unexpectedStatusCode)
+                return
+            }
+            
+            guard let data = data else{
+                onFailure(.unexpectedNilData)
+                return
+            }
+            
+            if let sessionKeyResponse = JsonConverter.decodeData(data: data, type: SessionKeyResponse.self){
+                let sessionKeyModel: SessionKey = SessionKeyModel(status: sessionKeyResponse.status, sessionKey: sessionKeyResponse.sessionKey, id: sessionKeyResponse.id, appName: sessionKeyResponse.appName, vnb: sessionKeyResponse.vnb, request: sessionKeyResponse.request)
+                onSuccess(sessionKeyModel)
+            }
+            else{
+                onFailure(.unableToConvertData)
+                return
+            }
+        }
+        task.resume()
+        
+    }
+    
+    func requestCreateOAuthKey(username: String, password: String, onSuccess: @escaping (OAuthModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void) {
+        var queryParameters: ServicesDatasource.queryParameter = ServicesDatasource.OAuthQuery.queryParameters
+        guard let appkey = TokenHandler.getToken(serviceName: ServicesDatasource.AppKeyQuery.serviceTokenName) else{
+            return
+        }
+        queryParameters[ServicesDatasource.Querykeys.appKey] = appkey
+        queryParameters[ServicesDatasource.Querykeys.login] = username
+        queryParameters[ServicesDatasource.Querykeys.password] = password
+
+        
+        let finalUrl: URL = getUrlWithQueryParameters(queryParameters: queryParameters)!
+        let urlRequest = getUrlRequest(url: finalUrl)
+        let task = URLSession.shared.dataTask(with: urlRequest) {[weak self] data, response, error in
+            
+            guard self != nil else {return}
+            
+            if error != nil{
+                onFailure(.unableToPerformRequest)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+               response.statusCode != 200{
+                onFailure(.unexpectedStatusCode)
+                return
+            }
+            
+            guard let data = data else{
+                onFailure(.unexpectedNilData)
+                return
+            }
+            
+            if let oAuthKeyResponse = JsonConverter.decodeData(data: data, type: OAuthKeyResponse.self){
+                let oAuthModel: OAuthKey = OAuthModel(status: oAuthKeyResponse.status, oAuthKey: oAuthKeyResponse.oAuthKey, o_u: oAuthKeyResponse.o_u, request: oAuthKeyResponse.request)
+                onSuccess(oAuthModel)
+            }
+        }
+        task.resume()
+    }
+    
+    func requestCreateAppKey(onSuccess: @escaping (AppkeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void)->Void {
+        let queryParameters: ServicesDatasource.queryParameter = ServicesDatasource.AppKeyQuery.queryParameters
+        
+        let finalUrl: URL = getUrlWithQueryParameters(queryParameters: queryParameters)!
         let urlRequest = getUrlRequest(url: finalUrl)
         let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
             
-            guard let self = self else {return}
+            guard self != nil else {return}
             
             if error != nil{
                 onFailure(.unableToPerformRequest)
@@ -69,11 +164,11 @@ class AuthenticationService: AuthenticationServiceProtocol{
             
             if let appkeyResponse = JsonConverter.decodeData(data: data, type: AppKeyResponse.self){
                 let appkeyModel: AppkeyModel = AppkeyModel(id: appkeyResponse.id, status: appkeyResponse.status, appkey: appkeyResponse.appkey, request: appkeyResponse.request)
-                print(appkeyModel)
+                onSuccess(appkeyModel)
+            }else{
+                onFailure(.unableToConvertData)
+                return
             }
-            
-            
-            
         }
         task.resume()
     }
