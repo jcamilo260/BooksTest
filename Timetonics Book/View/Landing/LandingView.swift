@@ -18,8 +18,8 @@ struct LandingView: View {
         }
     }
     
-    var body: some View {
-        VStack {
+    var headerSection: some View{
+        VStack{
             HStack {
                 Button(action: { presentationMode.wrappedValue.dismiss() }) {
                     HStack {
@@ -48,17 +48,31 @@ struct LandingView: View {
                     .fontWeight(.heavy)
                 
                 if self.filteredBooks.isEmpty{
-                    Text("No books here")
-                }
-                
-                List(self.filteredBooks) { book in
-                    HStack {
-                        Text("\(book.name)")
+                    VStack {
+                        Image(systemName: "exclamationmark.warninglight")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                        Text("It seems to be empty here")
+                            .customText(color: .black)
+                            .font(.system(size: 20, weight: .medium))
                     }
+                    
                 }
             }
-            
+        }
+    }
+    
+    var booksListSection: some View{
+        List(self.filteredBooks) { book in
+            BookCellView(book: book)
+        }
+    }
+    
+    var body: some View {
+        VStack {
+            headerSection
             Spacer()
+            booksListSection
         }
         .onAppear(perform: {
             self.landingVM.fetchData()

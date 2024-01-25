@@ -14,6 +14,8 @@
 		B3110A672B6066DF00780729 /* ServiceDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A662B6066DF00780729 /* ServiceDatasource.swift */; };
 		B3110A692B606C4100780729 /* SessionKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A682B606C4100780729 /* SessionKeyResponse.swift */; };
 		B3110A6B2B60907100780729 /* LoginViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A6A2B60907100780729 /* LoginViewVM.swift */; };
+		B317DC122B62DCE000A00120 /* Image+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DC112B62DCE000A00120 /* Image+ext.swift */; };
+		B317DC142B62DF5F00A00120 /* BookCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317DC132B62DF5F00A00120 /* BookCellView.swift */; };
 		B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31C2B5F61D10092948D /* AuthenticationService.swift */; };
 		B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31F2B5F62990092948D /* AppKeyResponse.swift */; };
 		B338C91D2B621DE300EE2589 /* FetchDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C91C2B621DE300EE2589 /* FetchDataService.swift */; };
@@ -42,6 +44,8 @@
 		B3110A662B6066DF00780729 /* ServiceDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDatasource.swift; sourceTree = "<group>"; };
 		B3110A682B606C4100780729 /* SessionKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeyResponse.swift; sourceTree = "<group>"; };
 		B3110A6A2B60907100780729 /* LoginViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewVM.swift; sourceTree = "<group>"; };
+		B317DC112B62DCE000A00120 /* Image+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+ext.swift"; sourceTree = "<group>"; };
+		B317DC132B62DF5F00A00120 /* BookCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellView.swift; sourceTree = "<group>"; };
 		B329C31C2B5F61D10092948D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B329C31F2B5F62990092948D /* AppKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyResponse.swift; sourceTree = "<group>"; };
 		B338C91C2B621DE300EE2589 /* FetchDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataService.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B306B12B2B60A88300A696A0 /* LandingView.swift */,
+				B317DC132B62DF5F00A00120 /* BookCellView.swift */,
 			);
 			path = Landing;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				B338C9332B623C1E00EE2589 /* Text+ext.swift */,
+				B317DC112B62DCE000A00120 /* Image+ext.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -345,12 +351,14 @@
 				B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */,
 				B3110A6B2B60907100780729 /* LoginViewVM.swift in Sources */,
 				B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */,
+				B317DC122B62DCE000A00120 /* Image+ext.swift in Sources */,
 				B338C9312B62321800EE2589 /* BookModel.swift in Sources */,
 				B338C92D2B6230A300EE2589 /* SessionKeyModel.swift in Sources */,
 				B338C9292B62307800EE2589 /* AppKeyModel.swift in Sources */,
 				B3110A612B604D3300780729 /* TokenHandler.swift in Sources */,
 				B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */,
 				B338C9252B6228CD00EE2589 /* LandingViewVM.swift in Sources */,
+				B317DC142B62DF5F00A00120 /* BookCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
