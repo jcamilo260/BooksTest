@@ -8,6 +8,11 @@
 import Foundation
 protocol FetchDataServiceProtocol{
     associatedtype FetchedData
+    /// Takes action about the request and response of 'books'
+    /// - Parameters:
+    ///   - onSuccess: Completion that handles a positive result
+    ///   - onFailure: Completion that handles a negative result
+    /// - Returns: No return
     func fetchData(onSuccess: @escaping ([FetchedData])->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
 }
 

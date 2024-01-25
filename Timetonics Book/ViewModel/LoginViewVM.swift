@@ -15,6 +15,8 @@ class LoginViewVM: ObservableObject{
     @Published var isLoading: Bool = false
     @Published var errorMessage: String = ""
     
+    /// Handles the interaction when login button is pressed in view
+    /// - Returns: Just handles the data from the service
     public func login()->Void{
         self.logedIn = false
         self.isLoading = true
@@ -50,15 +52,12 @@ class LoginViewVM: ObservableObject{
         }
     }
     
+    /// It's a faster way to set these values
+    /// - Parameter error: error mesage that it's gonna be shown
+    /// - Returns: no return
     private func handleLoginFailure(error: String? = nil)->Void {
         self.isLoading.toggle()
         self.errorMessage = error ?? "Unknown Error"
     }
     
-    public func resetValues()->Void{
-        self.email = ""
-        self.password = ""
-        self.logedIn = false
-        self.isLoading = false
-    }
 }

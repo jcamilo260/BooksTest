@@ -10,6 +10,10 @@ import Security
 
 class TokenHandler{
     
+    /// Saves a token
+    /// - Parameters:
+    ///   - serviceName: Name of the token
+    ///   - token: element that you want to encode
     public static func saveToken(serviceName: String, token: String){
         if let data = token.data(using: .utf8){
             
@@ -29,6 +33,9 @@ class TokenHandler{
         
     }
     
+    /// Get an specific token
+    /// - Parameter serviceName: Name of the token
+    /// - Returns: returns the decoded token
     static func getToken(serviceName: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -48,6 +55,8 @@ class TokenHandler{
         return String(data: data, encoding: .utf8)
     }
     
+    /// Delete an specific token
+    /// - Parameter serviceName: token that you want to delete
     static func deleteToken(serviceName: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -62,6 +71,7 @@ class TokenHandler{
         }
     }
     
+    /// Shows in console all the keys
     static func printAllKeys() {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,

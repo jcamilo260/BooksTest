@@ -10,6 +10,8 @@ class LandingViewVM: ObservableObject{
     private var service: any FetchDataServiceProtocol = FetchDataService()
     @Published var books: [BookModel] = []
     
+    /// Handles the request and response of bookModel
+    /// - Returns: no return
     public func fetchData()->Void{
         self.service.fetchData { books in
             if let books = books as? [BookModel]{

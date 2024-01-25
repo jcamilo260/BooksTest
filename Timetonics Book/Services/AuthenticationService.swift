@@ -12,8 +12,23 @@ protocol AuthenticationServiceProtocol{
     associatedtype OAuthKey
     associatedtype SessionKey
     
+    /// Takes action about the request and response of 'createKey'
+    /// - Parameters:
+    ///   - onSuccess: Completion that handles a positive result
+    ///   - onFailure: Completion that handles a negative result
+    /// - Returns: No return
     func requestCreateAppKey(onSuccess: @escaping (Appkey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
+    /// Takes action about the request and response of 'sessionKey'
+    /// - Parameters:
+    ///   - onSuccess: Completion that handles a positive result
+    ///   - onFailure: Completion that handles a negative result
+    /// - Returns: No return
     func requestCreateSessionKey(onSuccess: @escaping (SessionKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
+    /// Takes action about the request and response of 'oAuthKey'
+    /// - Parameters:
+    ///   - onSuccess: Completion that handles a positive result
+    ///   - onFailure: Completion that handles a negative result
+    /// - Returns: No return
     func requestCreateOAuthKey(username: String, password: String, onSuccess: @escaping (OAuthKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
 }
 
@@ -41,7 +56,7 @@ class AuthenticationService: AuthenticationServiceProtocol, WebServiceURLProtoco
         }
         return finalUrl
     }
-        
+  
     func requestCreateSessionKey(onSuccess: @escaping (SessionKeyModel) -> Void, onFailure: @escaping (AuthenticationError) -> Void) {
         var queryParameters: ServicesDatasource.queryParameter = ServicesDatasource.SessionKeyQuery.queryParameters
         guard let o_u = TokenHandler.getToken(serviceName: ServicesDatasource.OAuthQuery.serviceTokenNameSecondary),

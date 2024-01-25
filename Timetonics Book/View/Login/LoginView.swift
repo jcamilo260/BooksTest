@@ -72,6 +72,11 @@ struct LoginView: View {
 
     
     @ViewBuilder
+    /// Returns a custom textInputField such as email or password field
+    /// - Parameters:
+    ///   - isEmail: set false if it needs SecureField
+    ///   - text: "the binding text" for the input field
+    /// - Returns: returns a view with the custom input field created
     func customInputTextField(isEmail: Bool, text: Binding<String>) -> some View {
         VStack(alignment: .leading) {
             
@@ -91,6 +96,7 @@ struct LoginView: View {
             .frame(height: 40))
     }
     
+    /// Triggers login action
     private func login() {
         self.loginVM.login()
     }
