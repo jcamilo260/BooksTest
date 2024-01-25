@@ -10,18 +10,18 @@ import SwiftUI
 struct LandingView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var landingVM: LandingViewVM = LandingViewVM()
-    @State var isFiltering: Bool = false
-    private var filteredBooks: [BookModel]{
-        return landingVM.books.filter { book in
+    @State private var isFiltering: Bool = false
+    
+    private var filteredBooks: [BookModel] {
+        landingVM.books.filter { book in
             !isFiltering || book.contactUC != nil
         }
     }
     
     var body: some View {
-        VStack{
-            HStack{
-                Button(action: {presentationMode.wrappedValue.dismiss()}, label: {
-                    
+        VStack {
+            HStack {
+                Button(action: { presentationMode.wrappedValue.dismiss() }) {
                     HStack {
                         Image(systemName: "arrow.backward")
                             .foregroundColor(.black)
@@ -29,31 +29,39 @@ struct LandingView: View {
                             .foregroundColor(.black)
                             .fontWeight(.black)
                     }
-                })
+                }
                 .padding()
                 
                 Spacer()
             }
-            VStack{
-                Text("Books").customText(color: .black)
+            
+            Toggle(isOn: self.$isFiltering) {
+                Text("Filter books")
+            }
+            .padding()
+            
+            VStack {
+                Text("Books")
+                    .customText(color: .black)
                     .font(.system(size: 70))
                     .fontWidth(.standard)
                     .fontWeight(.heavy)
                 
-                List(self.filteredBooks){book in
-                    
+                List(self.filteredBooks) { book in
                     HStack {
                         Text("\(book.name)")
                     }
-                    
                 }
             }
+            
             Spacer()
-        }.onAppear(perform: {
-            self.landingVM.fetchData()  
+        }
+        .onAppear(perform: {
+            self.landingVM.fetchData()
         })
     }
 }
+
 
 #Preview {
     LandingView()
