@@ -11,14 +11,13 @@ protocol AuthenticationServiceProtocol{
     associatedtype Appkey
     associatedtype OAuthKey
     associatedtype SessionKey
-    func getUrlRequest(url: URL)->URLRequest
+    
     func requestCreateAppKey(onSuccess: @escaping (Appkey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
     func requestCreateSessionKey(onSuccess: @escaping (SessionKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
     func requestCreateOAuthKey(username: String, password: String, onSuccess: @escaping (OAuthKey)->Void, onFailure: @escaping (AuthenticationError)->Void) -> Void
-    func getUrlWithQueryParameters(queryParameters: ServicesDatasource.queryParameter) -> URL?
 }
 
-class AuthenticationService: AuthenticationServiceProtocol{
+class AuthenticationService: AuthenticationServiceProtocol, WebServiceURLProtocol{
     
     typealias OAuthKey = OAuthModel
     typealias Appkey = AppkeyModel

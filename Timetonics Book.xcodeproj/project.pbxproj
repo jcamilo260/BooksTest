@@ -13,9 +13,18 @@
 		B3110A632B6065FE00780729 /* MenuDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A622B6065FE00780729 /* MenuDatasource.swift */; };
 		B3110A672B6066DF00780729 /* ServiceDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A662B6066DF00780729 /* ServiceDatasource.swift */; };
 		B3110A692B606C4100780729 /* SessionKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A682B606C4100780729 /* SessionKeyResponse.swift */; };
-		B3110A6B2B60907100780729 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A6A2B60907100780729 /* LoginViewModel.swift */; };
+		B3110A6B2B60907100780729 /* LoginViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3110A6A2B60907100780729 /* LoginViewVM.swift */; };
 		B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31C2B5F61D10092948D /* AuthenticationService.swift */; };
 		B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329C31F2B5F62990092948D /* AppKeyResponse.swift */; };
+		B338C91D2B621DE300EE2589 /* FetchDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C91C2B621DE300EE2589 /* FetchDataService.swift */; };
+		B338C91F2B621E9C00EE2589 /* WebServiceURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C91E2B621E9C00EE2589 /* WebServiceURLProtocol.swift */; };
+		B338C9212B62207000EE2589 /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C9202B62207000EE2589 /* BooksResponse.swift */; };
+		B338C9252B6228CD00EE2589 /* LandingViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C9242B6228CD00EE2589 /* LandingViewVM.swift */; };
+		B338C9292B62307800EE2589 /* AppKeyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C9282B62307800EE2589 /* AppKeyModel.swift */; };
+		B338C92B2B62308E00EE2589 /* OAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C92A2B62308E00EE2589 /* OAuthModel.swift */; };
+		B338C92D2B6230A300EE2589 /* SessionKeyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C92C2B6230A300EE2589 /* SessionKeyModel.swift */; };
+		B338C9312B62321800EE2589 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C9302B62321800EE2589 /* BookModel.swift */; };
+		B338C9342B623C1E00EE2589 /* Text+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B338C9332B623C1E00EE2589 /* Text+ext.swift */; };
 		B3875C3F2B600CC600CD17C5 /* OAuthKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */; };
 		B3AE83D02B5F98320023E151 /* JsonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE83CF2B5F98320023E151 /* JsonConverter.swift */; };
 		B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */; };
@@ -32,9 +41,18 @@
 		B3110A622B6065FE00780729 /* MenuDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDatasource.swift; sourceTree = "<group>"; };
 		B3110A662B6066DF00780729 /* ServiceDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDatasource.swift; sourceTree = "<group>"; };
 		B3110A682B606C4100780729 /* SessionKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeyResponse.swift; sourceTree = "<group>"; };
-		B3110A6A2B60907100780729 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B3110A6A2B60907100780729 /* LoginViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewVM.swift; sourceTree = "<group>"; };
 		B329C31C2B5F61D10092948D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B329C31F2B5F62990092948D /* AppKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyResponse.swift; sourceTree = "<group>"; };
+		B338C91C2B621DE300EE2589 /* FetchDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataService.swift; sourceTree = "<group>"; };
+		B338C91E2B621E9C00EE2589 /* WebServiceURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceURLProtocol.swift; sourceTree = "<group>"; };
+		B338C9202B62207000EE2589 /* BooksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
+		B338C9242B6228CD00EE2589 /* LandingViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewVM.swift; sourceTree = "<group>"; };
+		B338C9282B62307800EE2589 /* AppKeyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyModel.swift; sourceTree = "<group>"; };
+		B338C92A2B62308E00EE2589 /* OAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthModel.swift; sourceTree = "<group>"; };
+		B338C92C2B6230A300EE2589 /* SessionKeyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeyModel.swift; sourceTree = "<group>"; };
+		B338C9302B62321800EE2589 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		B338C9332B623C1E00EE2589 /* Text+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+ext.swift"; sourceTree = "<group>"; };
 		B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthKeyResponse.swift; sourceTree = "<group>"; };
 		B3AE83CF2B5F98320023E151 /* JsonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConverter.swift; sourceTree = "<group>"; };
 		B3DDBD932B5E3D4D00782608 /* Timetonics Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetonics Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,14 +90,66 @@
 			path = Landing;
 			sourceTree = "<group>";
 		};
-		B329C31E2B5F62630092948D /* AuthenticationResponse */ = {
+		B329C31E2B5F62630092948D /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B338C9272B62305B00EE2589 /* Model */,
+				B338C9262B62303800EE2589 /* Response */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B338C91B2B621C7500EE2589 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				B338C92F2B6230FA00EE2589 /* Model */,
+				B338C92E2B6230CC00EE2589 /* Response */,
+			);
+			path = Books;
+			sourceTree = "<group>";
+		};
+		B338C9262B62303800EE2589 /* Response */ = {
 			isa = PBXGroup;
 			children = (
 				B329C31F2B5F62990092948D /* AppKeyResponse.swift */,
 				B3875C3E2B600CC600CD17C5 /* OAuthKeyResponse.swift */,
 				B3110A682B606C4100780729 /* SessionKeyResponse.swift */,
 			);
-			path = AuthenticationResponse;
+			path = Response;
+			sourceTree = "<group>";
+		};
+		B338C9272B62305B00EE2589 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B338C9282B62307800EE2589 /* AppKeyModel.swift */,
+				B338C92A2B62308E00EE2589 /* OAuthModel.swift */,
+				B338C92C2B6230A300EE2589 /* SessionKeyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B338C92E2B6230CC00EE2589 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				B338C9202B62207000EE2589 /* BooksResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		B338C92F2B6230FA00EE2589 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B338C9302B62321800EE2589 /* BookModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B338C9322B623C0200EE2589 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B338C9332B623C1E00EE2589 /* Text+ext.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		B3AE83CE2B5F980C0023E151 /* Utils */ = {
@@ -110,12 +180,13 @@
 		B3DDBD952B5E3D4D00782608 /* Timetonics Book */ = {
 			isa = PBXGroup;
 			children = (
+				B338C9322B623C0200EE2589 /* extensions */,
 				B3AE83CE2B5F980C0023E151 /* Utils */,
-				B3DDBDAF2B5E51CE00782608 /* services */,
+				B3DDBDAF2B5E51CE00782608 /* Services */,
 				B3DDBDA92B5E442A00782608 /* Datasource */,
-				B3DDBDA62B5E3FD500782608 /* viewmodel */,
-				B3DDBDA52B5E3FD000782608 /* model */,
-				B3DDBDA42B5E3FCB00782608 /* view */,
+				B3DDBDA62B5E3FD500782608 /* ViewModel */,
+				B3DDBDA52B5E3FD000782608 /* Model */,
+				B3DDBDA42B5E3FCB00782608 /* View */,
 				B3DDBD962B5E3D4D00782608 /* Timetonics_BookApp.swift */,
 				B3DDBD9A2B5E3D4F00782608 /* Assets.xcassets */,
 				B3DDBD9C2B5E3D4F00782608 /* Preview Content */,
@@ -131,30 +202,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B3DDBDA42B5E3FCB00782608 /* view */ = {
+		B3DDBDA42B5E3FCB00782608 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B306B12A2B60A87400A696A0 /* Landing */,
-				B3DDBDAC2B5E4F4A00782608 /* login */,
+				B3DDBDAC2B5E4F4A00782608 /* Login */,
 				B3DDBD982B5E3D4D00782608 /* ContentView.swift */,
 			);
-			path = view;
+			path = View;
 			sourceTree = "<group>";
 		};
-		B3DDBDA52B5E3FD000782608 /* model */ = {
+		B3DDBDA52B5E3FD000782608 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B329C31E2B5F62630092948D /* AuthenticationResponse */,
+				B338C91B2B621C7500EE2589 /* Books */,
+				B329C31E2B5F62630092948D /* Authentication */,
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		B3DDBDA62B5E3FD500782608 /* viewmodel */ = {
+		B3DDBDA62B5E3FD500782608 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B3110A6A2B60907100780729 /* LoginViewModel.swift */,
+				B3110A6A2B60907100780729 /* LoginViewVM.swift */,
+				B338C9242B6228CD00EE2589 /* LandingViewVM.swift */,
 			);
-			path = viewmodel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B3DDBDA92B5E442A00782608 /* Datasource */ = {
@@ -166,21 +239,23 @@
 			path = Datasource;
 			sourceTree = "<group>";
 		};
-		B3DDBDAC2B5E4F4A00782608 /* login */ = {
+		B3DDBDAC2B5E4F4A00782608 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				B3DDBDA72B5E41AF00782608 /* LoginView.swift */,
 			);
-			path = login;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		B3DDBDAF2B5E51CE00782608 /* services */ = {
+		B3DDBDAF2B5E51CE00782608 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				B306B1272B609CCD00A696A0 /* errors */,
 				B329C31C2B5F61D10092948D /* AuthenticationService.swift */,
+				B338C91C2B621DE300EE2589 /* FetchDataService.swift */,
+				B338C91E2B621E9C00EE2589 /* WebServiceURLProtocol.swift */,
 			);
-			path = services;
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,19 +329,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3AE83D02B5F98320023E151 /* JsonConverter.swift in Sources */,
+				B338C91D2B621DE300EE2589 /* FetchDataService.swift in Sources */,
 				B3DDBDA82B5E41AF00782608 /* LoginView.swift in Sources */,
 				B306B12C2B60A88300A696A0 /* LandingView.swift in Sources */,
 				B3875C3F2B600CC600CD17C5 /* OAuthKeyResponse.swift in Sources */,
 				B3DDBD992B5E3D4D00782608 /* ContentView.swift in Sources */,
 				B3110A632B6065FE00780729 /* MenuDatasource.swift in Sources */,
 				B3110A672B6066DF00780729 /* ServiceDatasource.swift in Sources */,
+				B338C9212B62207000EE2589 /* BooksResponse.swift in Sources */,
+				B338C92B2B62308E00EE2589 /* OAuthModel.swift in Sources */,
+				B338C9342B623C1E00EE2589 /* Text+ext.swift in Sources */,
 				B3110A692B606C4100780729 /* SessionKeyResponse.swift in Sources */,
 				B306B1292B609CDF00A696A0 /* Errors.swift in Sources */,
+				B338C91F2B621E9C00EE2589 /* WebServiceURLProtocol.swift in Sources */,
 				B3DDBD972B5E3D4D00782608 /* Timetonics_BookApp.swift in Sources */,
-				B3110A6B2B60907100780729 /* LoginViewModel.swift in Sources */,
+				B3110A6B2B60907100780729 /* LoginViewVM.swift in Sources */,
 				B329C3202B5F62990092948D /* AppKeyResponse.swift in Sources */,
+				B338C9312B62321800EE2589 /* BookModel.swift in Sources */,
+				B338C92D2B6230A300EE2589 /* SessionKeyModel.swift in Sources */,
+				B338C9292B62307800EE2589 /* AppKeyModel.swift in Sources */,
 				B3110A612B604D3300780729 /* TokenHandler.swift in Sources */,
 				B329C31D2B5F61D10092948D /* AuthenticationService.swift in Sources */,
+				B338C9252B6228CD00EE2589 /* LandingViewVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

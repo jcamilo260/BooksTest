@@ -1,5 +1,5 @@
 //
-//  OAuthKeyResponse.swift
+//  SessionKeyResponse.swift
 //  Timetonics Book
 //
 //  Created by Juan Camilo Argüelles Ardila on 23/01/24.
@@ -7,28 +7,20 @@
 
 import Foundation
 
-struct OAuthKeyResponse: Decodable{
-    
+struct SessionKeyResponse: Decodable{
     let status: String
-    let oAuthKey: String
+    let sessionKey: String
     let id: String
-    let o_u: String
+    let appName: String
     let vnb: String
     let request: String
     
     enum CodingKeys: String, CodingKey{
         case status = "status"
-        case oAuthKey = "oauthkey"
+        case sessionKey = "sesskey"
         case id = "id"
-        case o_u = "o_u"
+        case appName = "appName"
         case vnb = "createdVNB"
         case request = "req"
     }
-}
-
-struct OAuthModel{
-    let status: String
-    let oAuthKey: String
-    let o_u: String
-    let request: String
 }

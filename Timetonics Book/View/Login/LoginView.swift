@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject var loginVM: LoginViewModel = LoginViewModel()
+    @StateObject var loginVM: LoginViewVM = LoginViewVM()
     
     var body: some View {
         VStack {
@@ -27,9 +27,9 @@ struct LoginView: View {
     var header: some View {
         VStack(spacing: 35) {
             
-            customText("Welcome", color: MenuDatasource.textColor)
+            Text("Welcome").customText(color: MenuDatasource.textColor)
                 .font(.system(size: 40, weight: .heavy))
-            customText("Access your account securely and easily.", color: MenuDatasource.textColor)
+            Text("Access your account securely and easily.").customText(color: MenuDatasource.textColor)
                 .font(.system(size: 18))
         }
     }
@@ -45,7 +45,7 @@ struct LoginView: View {
     var footerLogin: some View {
         VStack {
             if !self.loginVM.errorMessage.isEmpty{
-                customText(self.loginVM.errorMessage, color: .black)
+                Text(self.loginVM.errorMessage).customText( color: .black)
                     .font(.footnote)
                     .fontWeight(.bold)
             }
@@ -62,18 +62,14 @@ struct LoginView: View {
                     .fill(Color(uiColor: MenuDatasource.buttonColor))
                     .frame(width: 300, height: 80)
                     .overlay {
-                        customText("Login", color: MenuDatasource.textColor)
+                        Text("Login").customText(color: MenuDatasource.textColor)
                             .font(.system(size: 30, weight: .medium))
                     }
             }
         }
     }
     
-    @ViewBuilder
-    func customText(_ text: String, color: UIColor) -> some View {
-        Text(text)
-            .foregroundColor(Color(uiColor: color))
-    }
+
     
     @ViewBuilder
     func customInputTextField(isEmail: Bool, text: Binding<String>) -> some View {

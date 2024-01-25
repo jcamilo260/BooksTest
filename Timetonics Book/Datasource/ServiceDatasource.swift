@@ -16,6 +16,7 @@ struct ServicesDatasource{
     
     public typealias queryParameter = [String:Any]
     public static let baseUrl: String = "https://timetonic.com/live/api.php"
+
     
     struct Querykeys{
         public static let version: String = "version"
@@ -27,6 +28,7 @@ struct ServicesDatasource{
         public static let o_u: String = "o_u"
         public static let u_c: String = "u_c"
         public static let oauthkey: String = "oauthkey"
+        public static let sessionkey: String = "sesskey"
     }
     
     struct AppKeyQuery: WebserviceQuery{
@@ -58,6 +60,17 @@ struct ServicesDatasource{
             Querykeys.o_u: "",
             Querykeys.u_c: "",
             Querykeys.oauthkey: ""
+        ]
+    }
+    
+    struct getAllBooksQuery: WebserviceQuery{
+        static var serviceTokenName: String = "getBooksKey"
+        public static var queryParameters: queryParameter = [
+            Querykeys.version: "1.47",
+            Querykeys.request : "getAllBooks",
+            Querykeys.o_u: "",
+            Querykeys.u_c: "",
+            Querykeys.sessionkey: ""
         ]
     }
 }

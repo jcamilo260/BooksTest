@@ -1,12 +1,12 @@
 //
-//  LoginViewModel.swift
+//  LoginViewVM.swift
 //  Timetonics Book
 //
 //  Created by Juan Camilo Argüelles Ardila on 23/01/24.
 //
 
 import Foundation
-class LoginViewModel: ObservableObject{
+class LoginViewVM: ObservableObject{
     
     private var service: any AuthenticationServiceProtocol = AuthenticationService()
     public var email: String = "android.developer@timetonic.com"
