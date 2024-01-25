@@ -6,20 +6,25 @@
 //
 
 import Foundation
-class LandingViewVM: ObservableObject{
+
+class LandingViewVM: ObservableObject {
     private var service: any FetchDataServiceProtocol = FetchDataService()
     @Published var books: [BookModel] = []
     
     /// Handles the request and response of bookModel
     /// - Returns: no return
-    public func fetchData()->Void{
-        self.service.fetchData { books in
-            if let books = books as? [BookModel]{
-                self.books = books
+    public func fetchData() -> Void {
+        service.fetchData { [weak self] books in
+            guard let self = self else { return }
+
+            if let books = books as? [BookModel] {
+                DispatchQueue.main.async {
+                    self.books = books
+                }
             }
         } onFailure: { error in
             print(error)
         }
-
     }
 }
+

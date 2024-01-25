@@ -15,7 +15,9 @@ protocol WebserviceQuery{
 struct ServicesDatasource{
     
     public typealias queryParameter = [String:Any]
-    public static let baseUrl: String = "https://timetonic.com/live/api.php"
+    public static let baseUrl: String = "https://timetonic.com"
+    public static let requestUrlExtension: String = "/live/api.php"
+    public static let baseUrlImage: String = ""
 
     
     struct Querykeys{

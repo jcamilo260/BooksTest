@@ -47,6 +47,10 @@ struct LandingView: View {
                     .fontWidth(.standard)
                     .fontWeight(.heavy)
                 
+                if self.filteredBooks.isEmpty{
+                    Text("No books here")
+                }
+                
                 List(self.filteredBooks) { book in
                     HStack {
                         Text("\(book.name)")

@@ -20,7 +20,7 @@ class FetchDataService: FetchDataServiceProtocol, WebServiceURLProtocol{
     
     typealias FetchData = BookModel
     
-    private var url: URL = URL(string: ServicesDatasource.baseUrl)!
+    private var url: URL = URL(string: ServicesDatasource.baseUrl + ServicesDatasource.requestUrlExtension)!
     
     func getUrlRequest(url: URL) -> URLRequest {
         var urlRequest: URLRequest = URLRequest(url: url)
@@ -29,7 +29,7 @@ class FetchDataService: FetchDataServiceProtocol, WebServiceURLProtocol{
     }
     
     func getUrlWithQueryParameters(queryParameters: ServicesDatasource.queryParameter) -> URL? {
-        var urlComponents: URLComponents = URLComponents(string: ServicesDatasource.baseUrl)!
+        var urlComponents: URLComponents = URLComponents(string: ServicesDatasource.baseUrl + ServicesDatasource.requestUrlExtension)!
         urlComponents.queryItems = queryParameters.map({
             URLQueryItem(name: $0.key, value: String(describing: $0.value))
         })
