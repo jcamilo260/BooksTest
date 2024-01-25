@@ -19,3 +19,7 @@ BookList App is an application that lets you discover and explore a vast array o
 - 🏗️ **MVVM Architecture:** Following the MVVM (Model-View-ViewModel) pattern, the architecture elegantly separates presentation logic from business logic, ensuring a harmonious symphony of code.
 
 - ✨ **SOLID Principles:** The app is meticulously crafted following SOLID principles—ensuring code that's robust, scalable, and easy to maintain.
+## Preview  
+![timetonicAppTest](https://github.com/jcamilo260/Timetonic-s-Books/assets/22894828/045b2054-9b09-4064-9ed5-2c46231fe87f)
+
+
